@@ -45,7 +45,9 @@
   .bar{height:26px;background:var(--fill);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px}
   .bar i{width:7px;height:7px;border-radius:50%;background:var(--line);display:inline-block}
   .bar span{margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--muted)}
-  .vp{padding:14px}
+  .vp{padding:14px;position:relative}
+  .toast{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(8px);background:rgba(33,37,41,.92);color:#fff;font-size:11px;padding:8px 14px;border-radius:18px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:5}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
   .appbar{display:flex;align-items:center;gap:8px;padding:2px 0 12px;border-bottom:1px solid var(--line);margin-bottom:12px}
   .appbar .logo{font-weight:700;font-size:13px}
@@ -114,7 +116,7 @@
   <h1>친구야 · 고객 페이지 와이어프레임 <span style="font-weight:400;color:var(--muted);font-size:12px">(저채도 · 모바일 우선 · v1)</span></h1>
   <p>구조·흐름 검토용 저충실도 와이어프레임입니다. 색·폰트·이미지는 디자인 단계에서 확정됩니다. 주황 주석 = 규칙/로직, 파랑 주석 = 확정 대기.</p>
   <nav class="index">
-    <a href="#landing">랜딩(제안 A·B)</a>
+    <a href="#landing">랜딩(안 A)</a>
     <a href="#intro">서비스 소개</a>
     <a href="#list">상품 조회</a>
     <a href="#detail">상품 상세</a>
@@ -134,55 +136,30 @@
 <main>
 
   <!-- LANDING -->
-  <div class="group" id="landing"><h2>랜딩 — 사장님 제안 (택1)</h2><hr></div>
-  <p style="font-size:12px;color:var(--muted);max-width:640px">랜딩 구성은 확정 전입니다. 아래 두 방향을 사장님께 제안해 하나를 고른 뒤 세부를 다듬습니다.</p>
-  <div class="two">
+  <div class="group" id="landing"><h2>랜딩 — 안 A 확정</h2><hr></div>
+  <p style="font-size:12px;color:var(--muted);max-width:640px">랜딩 구성은 <b>안 A(상품 우선형)</b>로 확정되었습니다. 세부 요소는 아래 정의를 기준으로 다듬습니다.</p>
+  <div style="max-width:380px">
     <div class="screen">
-      <div class="cap"><span class="id">안 A</span><span class="nm">상품 우선형</span><span class="dsc">바로 예약 유도</span></div>
+      <div class="cap"><span class="id">안 A</span><span class="nm">상품 우선형</span><span class="dsc">확정 · 서비스 소개 유도</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>LANDING · A</span></div><div class="vp">
         <div class="appbar"><span class="logo">친구야</span><span class="sp"></span><span class="ic"></span></div>
         <div class="imgph hero"></div>
         <div class="h t" style="margin:10px 0 6px"></div><div class="line w7"></div>
-        <a class="btn pri">지금 예약하기</a>
+        <a class="btn pri" href="#s4-c2">서비스 소개</a>
         <div class="h s" style="margin:12px 0 8px"></div>
         <div class="row"><div class="imgph sq"></div><div class="imgph sq"></div></div>
         <div class="row" style="margin-top:6px"><div class="chip">자전거</div><div class="chip">낚싯대</div></div>
-        <div class="note">CTA(예약) 노출을 최상단에 두는 방향. 재방문·목적형 고객에 유리.</div>
-        <div class="bnav"><div class="on"><div class="d"></div>홈</div><div><div class="d"></div>상품</div><div><div class="d"></div>예약</div><div><div class="d"></div>내정보</div></div>
+        <div class="note">서비스 소개 CTA를 최상단에 두는 방향. 신규·재방문 고객 모두 서비스 이해를 먼저 유도.</div>
+        <div class="bnav"><div class="on"><div class="d"></div>홈</div><div><div class="d"></div>상품</div><div><div class="d"></div>장바구니</div><div><div class="d"></div>내정보</div></div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>재방문·목적형 고객을 <b>즉시 예약</b>으로 유도</dd>
-          <dt>진입</dt><dd>앱 실행 시 홈 탭 기본 화면(사장님 <b>안 A 선택</b> 시)</dd>
-          <dt>주요 요소</dt><dd>히어로 이미지, 지금 예약하기 CTA(최상단 고정), 인기 상품 썸네일, 카테고리 칩</dd>
+          <dt>목적</dt><dd>고객이 <b>서비스 소개</b>를 먼저 접한 뒤 자연스럽게 예약으로 이어지도록 유도</dd>
+          <dt>진입</dt><dd>앱 실행 시 홈 탭 기본 화면(<b>안 A 확정</b>)</dd>
+          <dt>주요 요소</dt><dd>히어로 이미지, 서비스 소개 CTA(최상단 고정), 인기 상품 썸네일, 카테고리 칩</dd>
           <dt>규칙·로직</dt><dd>관리자 <b>'표출 ON'</b> 상품만 노출, 가격은 고객가 기준</dd>
-          <dt>화면 이동</dt><dd>지금 예약하기 → 상품 상세/예약 캘린더, 하단 탭 → 상품·예약·내정보</dd>
-        </dl>
-      </div>
-    </div>
-    <div class="screen">
-      <div class="cap"><span class="id">안 B</span><span class="nm">스토리형</span><span class="dsc">카페 소개 강조</span></div>
-      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>LANDING · B</span></div><div class="vp">
-        <div class="appbar"><span class="logo">친구야</span><span class="sp"></span><span class="ic"></span></div>
-        <div class="imgph hero"></div>
-        <div class="h t" style="margin:10px 0 6px"></div><div class="line w9"></div><div class="line w7"></div>
-        <div class="h s" style="margin:14px 0 6px"></div>
-        <div class="imgph wide"></div>
-        <div class="line w7" style="margin-top:8px"></div>
-        <a class="btn sec">서비스 알아보기</a>
-        <a class="btn pri">상품 보러가기</a>
-        <div class="note">브랜드/카페 이야기를 먼저 전달하는 방향. 신규 유입·인지 확보에 유리.</div>
-        <div class="bnav"><div class="on"><div class="d"></div>홈</div><div><div class="d"></div>상품</div><div><div class="d"></div>예약</div><div><div class="d"></div>내정보</div></div>
-      </div></div>
-      <div class="desc">
-        <h4>화면 상세 정의</h4>
-        <dl>
-          <dt>목적</dt><dd>신규 유입 고객에게 <b>브랜드·카페 스토리</b>를 먼저 전달해 인지 확보</dd>
-          <dt>진입</dt><dd>앱 실행 시 홈 탭 기본 화면(사장님 <b>안 B 선택</b> 시)</dd>
-          <dt>주요 요소</dt><dd>히어로 이미지, 브랜드 소개 카피, 서비스 알아보기·상품 보러가기 CTA</dd>
-          <dt>규칙·로직</dt><dd>콘텐츠(텍스트·이미지)는 관리자 <b>콘텐츠 관리(S4-A3)</b>에서 편집</dd>
-          <dt>화면 이동</dt><dd>서비스 알아보기 → 서비스 소개, 상품 보러가기 → 상품 조회</dd>
+          <dt>화면 이동</dt><dd>서비스 소개 → 서비스 소개(S4-C2), 하단 탭 → 상품·예약·내정보</dd>
         </dl>
       </div>
     </div>
@@ -192,7 +169,7 @@
   <div class="group" id="intro"><h2>콘텐츠 · 상품</h2><hr></div>
   <div class="grid">
 
-    <div class="screen">
+    <div class="screen" id="s4-c2">
       <div class="cap"><span class="id">S4-C2</span><span class="nm">서비스 소개</span><span class="dsc">단일 상세 페이지</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>INTRO</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">서비스 소개</span></div>
@@ -207,7 +184,7 @@
         <h4>화면 상세 정의</h4>
         <dl>
           <dt>목적</dt><dd>서비스 개요·이용 방식을 소개하는 <b>단일 상세 페이지</b></dd>
-          <dt>진입</dt><dd>랜딩 B의 '서비스 알아보기', 하단/상단 메뉴</dd>
+          <dt>진입</dt><dd>랜딩(안 A)의 '서비스 소개' CTA, 하단/상단 메뉴</dd>
           <dt>주요 요소</dt><dd>히어로 이미지, 소개 본문, 중간 이미지 블록</dd>
           <dt>규칙·로직</dt><dd>모든 텍스트·이미지는 관리자 <b>콘텐츠 관리(S4-A3)</b>에서 편집(고객은 읽기 전용)</dd>
           <dt>화면 이동</dt><dd>본문 내 링크/버튼 → 상품 조회</dd>
@@ -216,7 +193,7 @@
     </div>
 
     <div class="screen" id="list">
-      <div class="cap"><span class="id">S1/S3-C1</span><span class="nm">상품 조회</span><span class="dsc">자전거·낚싯대 목록</span></div>
+      <div class="cap"><span class="id">S1-C1</span><span class="nm">상품 조회</span><span class="dsc">자전거·낚싯대 목록</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>PRODUCTS</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">상품</span></div>
         <div><span class="chip on">자전거</span><span class="chip">낚싯대</span></div>
@@ -241,7 +218,7 @@
     </div>
 
     <div class="screen" id="detail">
-      <div class="cap"><span class="id">S1/S3-C1</span><span class="nm">상품 상세</span><span class="dsc">대여 옵션·요금</span></div>
+      <div class="cap"><span class="id">S3-C1</span><span class="nm">상품 상세</span><span class="dsc">대여 옵션·요금</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>DETAIL</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">전기 자전거</span></div>
         <div class="imgph hero"></div>
@@ -292,7 +269,8 @@
             <span style="font-family:var(--mono);font-size:9px;color:var(--muted)">/ 가용 3</span>
           </span></div>
         <div class="note"><b>예약 가능 기간</b>: 오늘 +1일 ~ +3개월(일본 기준 '오늘').<br><b>가용성</b>: 재고×슬롯 겹침으로 판정. 선택 날짜·옵션의 <b>가용 수량 상한</b> 내에서만 수량 선택 가능. 2일+타지역 반납 선택 시 <b>익일·익익일 자동 마감</b>.</div>
-        <a class="btn sec">장바구니 담기</a><a class="btn pri">바로 예약</a>
+        <a class="btn sec" href="javascript:void(0)" data-toast="장바구니에 추가되었습니다.">장바구니 담기</a><a class="btn pri">바로 예약</a>
+        <div class="toast"></div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
@@ -301,13 +279,13 @@
           <dt>진입</dt><dd>상품 상세의 '예약하기'</dd>
           <dt>주요 요소</dt><dd>옵션 칩, 가용성 캘린더(가능/선택/마감), 수량 스테퍼, 장바구니 담기·바로 예약</dd>
           <dt>규칙·로직</dt><dd>예약 가능 기간 <b>오늘 +1일 ~ +3개월</b>(일본 기준), 가용성 = 재고×슬롯 겹침, 가용 수량 상한 내 선택, 2일+타지역 반납 시 <b>익일·익익일 자동 마감</b></dd>
-          <dt>화면 이동</dt><dd>장바구니 담기 → 장바구니, 바로 예약 → 예약 확인</dd>
+          <dt>화면 이동</dt><dd>장바구니 담기 → <b>토스트('장바구니에 추가되었습니다.')</b> 노출 후 현재 화면 유지, 바로 예약 → <b>여권 영문명 입력·확인 화면(S1-C3)</b></dd>
         </dl>
       </div>
     </div>
 
     <div class="screen" id="cart">
-      <div class="cap"><span class="id">S1-C2</span><span class="nm">장바구니 · 예약 확인</span><span class="dsc">복수 상품 동시 예약</span></div>
+      <div class="cap"><span class="id">S1-C3</span><span class="nm">장바구니</span><span class="dsc">복수 상품 동시 예약</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>CART</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">예약 확인</span></div>
         <div class="card2"><div class="row"><div style="flex:1"><div class="h s"></div><div class="line w7"></div></div><span class="tag">×2 · ₩</span></div></div>
@@ -332,7 +310,7 @@
     </div>
 
     <div class="screen" id="deposit">
-      <div class="cap"><span class="id">S1-C3</span><span class="nm">입금 안내 · 확인 요청</span><span class="dsc">무통장 + 수동확인</span></div>
+      <div class="cap"><span class="id">S1-C4</span><span class="nm">입금 안내 · 확인 요청</span><span class="dsc">무통장 + 수동확인</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>DEPOSIT</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">입금 안내</span></div>
         <div class="card2">
@@ -362,7 +340,7 @@
   <div class="grid">
 
     <div class="screen">
-      <div class="cap"><span class="id">S1-C4</span><span class="nm">예약 목록</span><span class="dsc">상태별 조회</span></div>
+      <div class="cap"><span class="id">S1-C5</span><span class="nm">예약 목록</span><span class="dsc">상태별 조회</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>MY BOOKINGS</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">내 예약</span></div>
         <div class="tabs"><span class="on">전체</span><span>접수</span><span>완료</span><span>취소</span></div>
@@ -385,7 +363,7 @@
     </div>
 
     <div class="screen" id="resdetail">
-      <div class="cap"><span class="id">S1-C5</span><span class="nm">예약 상세 · 바우처</span><span class="dsc">예약번호 증빙</span></div>
+      <div class="cap"><span class="id">S1-C6</span><span class="nm">예약 상세 · 바우처</span><span class="dsc">예약번호 증빙</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>VOUCHER</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">예약 상세</span></div>
         <div class="card2" style="text-align:center">
@@ -412,7 +390,7 @@
     </div>
 
     <div class="screen" id="cancel">
-      <div class="cap"><span class="id">S1-C6</span><span class="nm">취소 요청</span><span class="dsc">수수료·환불·계좌</span></div>
+      <div class="cap"><span class="id">S1-C7</span><span class="nm">취소 요청</span><span class="dsc">수수료·환불·계좌</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>CANCEL</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">예약 취소 요청</span></div>
         <div class="card2">
@@ -487,7 +465,7 @@
     </div>
 
     <div class="screen">
-      <div class="cap"><span class="id">S4-C4</span><span class="nm">질문하기 — 상세/작성</span><span class="dsc">본인 글 + 답변</span></div>
+      <div class="cap"><span class="id">S4-C5</span><span class="nm">질문하기 — 상세/작성</span><span class="dsc">본인 글 + 답변</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>Q&A DETAIL</span></div><div class="vp">
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">내 질문</span></div>
         <div class="card2"><div class="line w7" style="margin:0 0 6px"></div><div class="line w9"></div><div class="line w5"></div>
@@ -516,26 +494,41 @@
   <div class="grid">
 
     <div class="screen">
-      <div class="cap"><span class="id">S0-C1/C2</span><span class="nm">회원가입</span><span class="dsc">소셜 → 아이디</span></div>
-      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>SIGN UP</span></div><div class="vp">
+      <div class="cap"><span class="id">S0-C1</span><span class="nm">회원가입</span><span class="dsc">소셜 로그인</span></div>
+      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>SIGN UP · 1</span></div><div class="vp">
         <div style="text-align:center;padding:8px 0 4px"><div class="h t" style="margin:0 auto 4px"></div><div class="line w5" style="margin:0 auto"></div></div>
         <a class="btn" style="background:#fee500;border-color:#fee500">카카오로 계속</a>
         <a class="btn">네이버로 계속</a>
         <a class="btn">구글로 계속</a>
         <div class="note blue">소셜 제공자는 추후 확장 가능한 구조.</div>
-        <div style="border-top:1px dashed var(--line);margin-top:8px;padding-top:8px">
-          <div class="field">아이디</div>
-          <div class="note">여권 영문명은 <b>예약 시점</b>에 확보(가입 단계 아님).</div>
-        </div>
+      </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>소셜 로그인 기반 <b>회원가입</b> 시작</dd>
+          <dt>진입</dt><dd>예약 등 로그인 필요 액션, 내정보</dd>
+          <dt>주요 요소</dt><dd>소셜 버튼(카카오/네이버/구글)</dd>
+          <dt>규칙·로직</dt><dd>소셜 제공자 <b>추후 확장 가능</b> 구조</dd>
+          <dt>화면 이동</dt><dd>소셜 인증 완료 → <b>S0-C2(아이디 입력)</b></dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="screen">
+      <div class="cap"><span class="id">S0-C2</span><span class="nm">회원가입</span><span class="dsc">아이디 입력</span></div>
+      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>SIGN UP · 2</span></div><div class="vp">
+        <div style="text-align:center;padding:8px 0 4px"><div class="h t" style="margin:0 auto 4px"></div><div class="line w5" style="margin:0 auto"></div></div>
+        <div class="field">아이디</div>
+        <div class="note">여권 영문명은 <b>예약 시점</b>에 확보(가입 단계 아님).</div>
         <a class="btn pri">가입 완료</a>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>소셜 로그인 기반 <b>회원가입</b></dd>
-          <dt>진입</dt><dd>예약 등 로그인 필요 액션, 내정보</dd>
-          <dt>주요 요소</dt><dd>소셜 버튼(카카오/네이버/구글), 아이디 입력, 가입 완료 CTA</dd>
-          <dt>규칙·로직</dt><dd>소셜 제공자 <b>추후 확장 가능</b> 구조, 여권 영문명은 <b>예약 시점</b>에 확보(가입 단계 아님)</dd>
+          <dt>목적</dt><dd>소셜 인증 후 <b>아이디</b> 설정으로 가입 완료</dd>
+          <dt>진입</dt><dd>S0-C1 소셜 인증 완료 후</dd>
+          <dt>주요 요소</dt><dd>아이디 입력, 가입 완료 CTA</dd>
+          <dt>규칙·로직</dt><dd>여권 영문명은 <b>예약 시점</b>에 확보(가입 단계 아님)</dd>
           <dt>화면 이동</dt><dd>가입 완료 → 직전 화면/홈</dd>
         </dl>
       </div>
@@ -573,5 +566,18 @@
   </div>
 
 </main>
+<script>
+  document.querySelectorAll('[data-toast]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var toast = btn.closest('.vp').querySelector('.toast');
+      if(!toast) return;
+      toast.textContent = btn.getAttribute('data-toast');
+      toast.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+    });
+  });
+</script>
 </body>
 </html>
