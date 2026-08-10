@@ -32,6 +32,14 @@
   .screen .cap .nm{font-size:14px;font-weight:600}
   .screen .cap .dsc{font-size:11px;color:var(--muted)}
 
+  /* screen definition */
+  .screen .desc{margin-top:10px;border:1px solid var(--line);border-radius:8px;background:var(--card);padding:11px 13px}
+  .desc h4{margin:0 0 8px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .desc dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 10px}
+  .desc dt{font-size:10px;color:var(--muted);font-family:var(--mono);white-space:nowrap;padding-top:1px}
+  .desc dd{margin:0;font-size:11.5px;color:var(--ink);line-height:1.5}
+  .desc dd b{color:var(--accent)}
+
   /* phone frame */
   .phone{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
   .bar{height:26px;background:var(--fill);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 10px;gap:5px}
@@ -142,6 +150,16 @@
         <div class="note">CTA(예약) 노출을 최상단에 두는 방향. 재방문·목적형 고객에 유리.</div>
         <div class="bnav"><div class="on"><div class="d"></div>홈</div><div><div class="d"></div>상품</div><div><div class="d"></div>예약</div><div><div class="d"></div>내정보</div></div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>재방문·목적형 고객을 <b>즉시 예약</b>으로 유도</dd>
+          <dt>진입</dt><dd>앱 실행 시 홈 탭 기본 화면(사장님 <b>안 A 선택</b> 시)</dd>
+          <dt>주요 요소</dt><dd>히어로 이미지, 지금 예약하기 CTA(최상단 고정), 인기 상품 썸네일, 카테고리 칩</dd>
+          <dt>규칙·로직</dt><dd>관리자 <b>'표출 ON'</b> 상품만 노출, 가격은 고객가 기준</dd>
+          <dt>화면 이동</dt><dd>지금 예약하기 → 상품 상세/예약 캘린더, 하단 탭 → 상품·예약·내정보</dd>
+        </dl>
+      </div>
     </div>
     <div class="screen">
       <div class="cap"><span class="id">안 B</span><span class="nm">스토리형</span><span class="dsc">카페 소개 강조</span></div>
@@ -157,6 +175,16 @@
         <div class="note">브랜드/카페 이야기를 먼저 전달하는 방향. 신규 유입·인지 확보에 유리.</div>
         <div class="bnav"><div class="on"><div class="d"></div>홈</div><div><div class="d"></div>상품</div><div><div class="d"></div>예약</div><div><div class="d"></div>내정보</div></div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>신규 유입 고객에게 <b>브랜드·카페 스토리</b>를 먼저 전달해 인지 확보</dd>
+          <dt>진입</dt><dd>앱 실행 시 홈 탭 기본 화면(사장님 <b>안 B 선택</b> 시)</dd>
+          <dt>주요 요소</dt><dd>히어로 이미지, 브랜드 소개 카피, 서비스 알아보기·상품 보러가기 CTA</dd>
+          <dt>규칙·로직</dt><dd>콘텐츠(텍스트·이미지)는 관리자 <b>콘텐츠 관리(S4-A3)</b>에서 편집</dd>
+          <dt>화면 이동</dt><dd>서비스 알아보기 → 서비스 소개, 상품 보러가기 → 상품 조회</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
@@ -175,6 +203,16 @@
         <div class="line w9"></div><div class="line w5"></div>
         <div class="note blue">텍스트·이미지는 관리자 콘텐츠 관리(S4-A3)에서 편집.</div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>서비스 개요·이용 방식을 소개하는 <b>단일 상세 페이지</b></dd>
+          <dt>진입</dt><dd>랜딩 B의 '서비스 알아보기', 하단/상단 메뉴</dd>
+          <dt>주요 요소</dt><dd>히어로 이미지, 소개 본문, 중간 이미지 블록</dd>
+          <dt>규칙·로직</dt><dd>모든 텍스트·이미지는 관리자 <b>콘텐츠 관리(S4-A3)</b>에서 편집(고객은 읽기 전용)</dd>
+          <dt>화면 이동</dt><dd>본문 내 링크/버튼 → 상품 조회</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="list">
@@ -190,6 +228,16 @@
           <div style="flex:1"><div class="h s"></div><div class="line w7"></div><div class="line w3"></div></div></div></div>
         <div class="note">관리자가 '표출 ON'한 상품만 노출. 가격은 고객가.</div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>대여 가능 상품(자전거·낚싯대)을 <b>카테고리별</b>로 조회</dd>
+          <dt>진입</dt><dd>하단 탭 '상품', 랜딩 CTA</dd>
+          <dt>주요 요소</dt><dd>카테고리 칩(자전거/낚싯대), 상품 카드(썸네일·명칭·요약가)</dd>
+          <dt>규칙·로직</dt><dd>관리자 <b>'표출 ON'</b> 상품만 노출, 가격은 <b>고객가</b> 기준</dd>
+          <dt>화면 이동</dt><dd>상품 카드 → 상품 상세</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="detail">
@@ -204,6 +252,16 @@
         <div class="note">옵션(대여시간)별 요금 표기. 2일 대여에는 <b>타지역 반납(추가요금)</b> 옵션 노출.</div>
         <a class="btn pri">예약하기</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>선택 상품의 <b>대여 옵션·요금</b>을 확인하고 예약 시작</dd>
+          <dt>진입</dt><dd>상품 조회 목록의 상품 카드</dd>
+          <dt>주요 요소</dt><dd>대표 이미지, 상품 설명, 옵션 칩(2시간/1일/2일/야간), 요금, 예약하기 CTA</dd>
+          <dt>규칙·로직</dt><dd>옵션(대여시간)별 요금 표기, 2일 대여 선택 시 <b>타지역 반납(추가요금)</b> 옵션 노출</dd>
+          <dt>화면 이동</dt><dd>예약하기 → 예약·캘린더</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
@@ -236,6 +294,16 @@
         <div class="note"><b>예약 가능 기간</b>: 오늘 +1일 ~ +3개월(일본 기준 '오늘').<br><b>가용성</b>: 재고×슬롯 겹침으로 판정. 선택 날짜·옵션의 <b>가용 수량 상한</b> 내에서만 수량 선택 가능. 2일+타지역 반납 선택 시 <b>익일·익익일 자동 마감</b>.</div>
         <a class="btn sec">장바구니 담기</a><a class="btn pri">바로 예약</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>옵션·날짜·수량을 선택해 예약 항목 확정</dd>
+          <dt>진입</dt><dd>상품 상세의 '예약하기'</dd>
+          <dt>주요 요소</dt><dd>옵션 칩, 가용성 캘린더(가능/선택/마감), 수량 스테퍼, 장바구니 담기·바로 예약</dd>
+          <dt>규칙·로직</dt><dd>예약 가능 기간 <b>오늘 +1일 ~ +3개월</b>(일본 기준), 가용성 = 재고×슬롯 겹침, 가용 수량 상한 내 선택, 2일+타지역 반납 시 <b>익일·익익일 자동 마감</b></dd>
+          <dt>화면 이동</dt><dd>장바구니 담기 → 장바구니, 바로 예약 → 예약 확인</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="cart">
@@ -251,6 +319,16 @@
         <div class="kv"><span class="k">합계</span><span class="v">₩ 00,000</span></div>
         <a class="btn pri">예약하고 입금 안내 받기</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>복수 상품을 <b>동시 예약</b>하고 여권명·합계 확인 후 확정</dd>
+          <dt>진입</dt><dd>예약 캘린더의 '장바구니 담기', 하단 탭 예약</dd>
+          <dt>주요 요소</dt><dd>담긴 항목(수량 표시), 임시 홀드 타이머, 여권 영문명, 합계, 확정 CTA</dd>
+          <dt>규칙·로직</dt><dd><b>임시 홀드</b>로 중복 예약 방지, 저장된 여권 영문명 없으면 <b>필수 입력</b>(확정 선행조건), 수량 변경은 예약 화면에서</dd>
+          <dt>화면 이동</dt><dd>예약하고 입금 안내 받기 → 입금 안내</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="deposit">
@@ -266,6 +344,16 @@
         <div class="note">PG 미사용. 안내 계좌(관리자 설정 1개)로 입금 후 아래 버튼으로 확인 요청 → 상태 <b>접수</b>.<br>24시간 내 미입금 시 관리자가 강제취소 가능.</div>
         <a class="btn pri">입금 확인 요청</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>무통장 입금 안내 후 <b>수동 확인 요청</b> 접수</dd>
+          <dt>진입</dt><dd>예약 확인의 '예약하고 입금 안내 받기'</dd>
+          <dt>주요 요소</dt><dd>예약번호, 입금 계좌·예금주·입금액, 입금 확인 요청 CTA</dd>
+          <dt>규칙·로직</dt><dd><b>PG 미사용</b>, 안내 계좌(관리자 설정 1개), 확인 요청 시 상태 <b>접수</b>, <b>24시간 내 미입금</b> 시 관리자 강제취소 가능</dd>
+          <dt>화면 이동</dt><dd>입금 확인 요청 → 예약 목록(상태: 접수)</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
@@ -284,6 +372,16 @@
         <div class="card2"><div class="row"><div style="flex:1"><div class="line w5" style="margin:0"></div><div class="line w7"></div></div><span class="tag r">취소</span></div></div>
         <div class="note">상태: 접수 → 완료(입금확인) → 취소요청 → 취소.</div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>내 예약을 <b>상태별</b>로 조회</dd>
+          <dt>진입</dt><dd>하단 탭 '내정보' → 내 예약, 입금 확인 요청 후</dd>
+          <dt>주요 요소</dt><dd>상태 탭(전체/접수/완료/취소), 예약 카드(상태 태그)</dd>
+          <dt>규칙·로직</dt><dd>상태 흐름: <b>접수 → 완료(입금확인) → 취소요청 → 취소</b></dd>
+          <dt>화면 이동</dt><dd>예약 카드 → 예약 상세·바우처</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="resdetail">
@@ -301,6 +399,16 @@
         <div class="kv"><span class="k">여권명</span><span class="v">GILDONG HONG</span></div>
         <a class="btn">취소 요청</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>예약 증빙(<b>바우처</b>) 확인 및 취소 요청 진입</dd>
+          <dt>진입</dt><dd>예약 목록의 예약 카드</dd>
+          <dt>주요 요소</dt><dd>상태 태그, 예약번호, 상품·옵션, 이용일, 여권명, 취소 요청 버튼</dd>
+          <dt>규칙·로직</dt><dd>예약번호가 현장 이용 시 <b>증빙</b> 역할, 취소는 상태·기간 조건 충족 시 가능</dd>
+          <dt>화면 이동</dt><dd>취소 요청 → 취소 요청 화면</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="cancel">
@@ -317,6 +425,16 @@
         <div class="note blue">환불 계좌는 <b>취소 요청 시점</b>에 입력. 실제 이체는 관리자 수동 처리.</div>
         <a class="btn pri">취소 요청 보내기</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>취소 수수료·환불액 확인 후 <b>취소 요청</b> 제출</dd>
+          <dt>진입</dt><dd>예약 상세의 '취소 요청'</dd>
+          <dt>주요 요소</dt><dd>결제 금액·취소 수수료·환불 예정액, 환불 계좌 입력, 취소 요청 보내기</dd>
+          <dt>규칙·로직</dt><dd>수수료는 <b>이용일 기준 차등 요율</b>(관리자 세팅), 고객은 확인 후 진행, 환불 계좌는 <b>요청 시점 입력</b>, 실제 이체는 관리자 <b>수동 처리</b></dd>
+          <dt>화면 이동</dt><dd>취소 요청 보내기 → 예약 목록(상태: 취소요청)</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
@@ -334,6 +452,16 @@
         <div class="card2"><div class="row"><div class="line w7" style="margin:0"></div><span style="color:var(--muted)">＋</span></div></div>
         <div class="note blue">검색 없음. 분류(카테고리)는 차후 확정. 아코디언 펼침형.</div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>자주 묻는 질문을 <b>아코디언</b>으로 열람</dd>
+          <dt>진입</dt><dd>내정보/고객지원 메뉴</dd>
+          <dt>주요 요소</dt><dd>질문 항목(＋ 펼침), 펼친 답변 본문</dd>
+          <dt>규칙·로직</dt><dd><b>검색 없음</b>, 분류(카테고리)는 차후 확정, 콘텐츠는 관리자 FAQ 관리에서 편집</dd>
+          <dt>화면 이동</dt><dd>해결 안 될 시 → 질문하기</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="qna">
@@ -346,6 +474,16 @@
         <div class="note"><b>목록은 전체 공개</b>(제목·상태). <b>상세 내용·답변은 작성 본인만</b> 열람. 타인 글은 잠금 표시.</div>
         <a class="btn pri">질문 작성</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>고객 1:1 문의를 목록으로 조회하고 신규 작성</dd>
+          <dt>진입</dt><dd>내정보/고객지원 메뉴, FAQ에서 이동</dd>
+          <dt>주요 요소</dt><dd>질문 카드(제목·상태 태그), 타인 글 잠금 표시, 질문 작성 CTA</dd>
+          <dt>규칙·로직</dt><dd><b>목록은 전체 공개</b>(제목·상태), <b>상세 내용·답변은 작성 본인만</b> 열람, 타인 글은 잠금</dd>
+          <dt>화면 이동</dt><dd>본인 카드 → 질문 상세, 질문 작성 → 작성 폼</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen">
@@ -360,6 +498,16 @@
           <div class="field" style="height:56px">새 질문 입력…</div><a class="btn pri">등록</a>
         </div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>본인 질문·답변 열람 및 신규 질문 등록</dd>
+          <dt>진입</dt><dd>질문 목록의 본인 카드/질문 작성</dd>
+          <dt>주요 요소</dt><dd>내 질문 본문(삭제 버튼), 관리자 답변, 새 질문 입력·등록</dd>
+          <dt>규칙·로직</dt><dd>질문 <b>삭제 가능·수정 불가</b>, 답변 등록 시 <b>카카오 알림톡</b> 알림</dd>
+          <dt>화면 이동</dt><dd>등록 → 질문 목록에 반영</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
@@ -381,6 +529,16 @@
         </div>
         <a class="btn pri">가입 완료</a>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>소셜 로그인 기반 <b>회원가입</b></dd>
+          <dt>진입</dt><dd>예약 등 로그인 필요 액션, 내정보</dd>
+          <dt>주요 요소</dt><dd>소셜 버튼(카카오/네이버/구글), 아이디 입력, 가입 완료 CTA</dd>
+          <dt>규칙·로직</dt><dd>소셜 제공자 <b>추후 확장 가능</b> 구조, 여권 영문명은 <b>예약 시점</b>에 확보(가입 단계 아님)</dd>
+          <dt>화면 이동</dt><dd>가입 완료 → 직전 화면/홈</dd>
+        </dl>
+      </div>
     </div>
 
     <div class="screen" id="profile">
@@ -396,6 +554,16 @@
           <a class="btn" style="color:#9a3b2c">회원 탈퇴 (개인정보 삭제)</a>
         </div>
       </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>계정 정보 확인 및 <b>여권 영문명</b> 관리</dd>
+          <dt>진입</dt><dd>하단 탭 '내정보' → 내 정보</dd>
+          <dt>주요 요소</dt><dd>아이디·연결 소셜(읽기), 여권 영문명(변경 가능), 저장, 로그아웃, 회원 탈퇴</dd>
+          <dt>규칙·로직</dt><dd>여권 영문명은 언제든 변경 가능(예약 시 사용), <b>회원 탈퇴 시 개인정보 삭제</b></dd>
+          <dt>화면 이동</dt><dd>로그아웃/탈퇴 → 로그아웃 상태 홈</dd>
+        </dl>
+      </div>
     </div>
   </div>
 
