@@ -220,23 +220,24 @@
     <div class="screen" id="detail">
       <div class="cap"><span class="id">S3-C1</span><span class="nm">상품 상세</span><span class="dsc">대여 옵션·요금</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>DETAIL</span></div><div class="vp">
+        <a class="btn sm sec" style="margin-bottom:8px">‹ 이전 페이지로 이동</a>
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">전기 자전거</span></div>
         <div class="imgph hero"></div>
         <div class="h t" style="margin:10px 0 6px"></div><div class="line w9"></div><div class="line w7"></div>
         <div class="h s" style="margin:12px 0 6px"></div>
         <div class="card2"><div class="row"><div class="line w5" style="margin:0"></div><span class="tag">요금</span></div></div>
-        <div class="row" style="margin-top:2px"><span class="chip">2시간</span><span class="chip">1일</span><span class="chip">2일</span><span class="chip">야간</span></div>
-        <div class="note">옵션(대여시간)별 요금 표기. 2일 대여에는 <b>타지역 반납(추가요금)</b> 옵션 노출.</div>
+        <div class="row" style="margin-top:2px"><span class="chip on">2시간</span><span class="chip">1일</span><span class="chip">2일</span><span class="chip">야간</span></div>
+        <div class="note">옵션(대여시간)별 요금 표기. 2일 대여에는 <b>타지역 반납(추가요금)</b> 옵션 노출. <b>여기서 선택한 옵션</b>이 다음 화면(예약·캘린더)의 날짜 선택 개수를 결정: 2시간·1일 → 1일 선택, 2일 → 2일 선택, 야간 → 야간 가능일 중 1일 선택.</div>
         <a class="btn pri">예약하기</a>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>선택 상품의 <b>대여 옵션·요금</b>을 확인하고 예약 시작</dd>
+          <dt>목적</dt><dd>선택 상품의 <b>대여 옵션·요금</b>을 확인하고 <b>옵션(대여시간)을 선택</b>해 예약 시작</dd>
           <dt>진입</dt><dd>상품 조회 목록의 상품 카드</dd>
-          <dt>주요 요소</dt><dd>대표 이미지, 상품 설명, 옵션 칩(2시간/1일/2일/야간), 요금, 예약하기 CTA</dd>
-          <dt>규칙·로직</dt><dd>옵션(대여시간)별 요금 표기, 2일 대여 선택 시 <b>타지역 반납(추가요금)</b> 옵션 노출</dd>
-          <dt>화면 이동</dt><dd>예약하기 → 예약·캘린더</dd>
+          <dt>주요 요소</dt><dd><b>이전 페이지로 이동</b> 버튼, 대표 이미지, 상품 설명, 옵션 칩(2시간/1일/2일/야간, <b>선택형</b>), 요금, 예약하기 CTA</dd>
+          <dt>규칙·로직</dt><dd>옵션(대여시간)별 요금 표기, 2일 대여 선택 시 <b>타지역 반납(추가요금)</b> 옵션 노출. <b>선택한 옵션</b>이 예약 캘린더의 날짜 선택 규칙을 결정: 2시간·1일 → <b>1일 선택</b>, 2일 → <b>2일 선택</b>, 야간 → <b>야간 가능일 중 1일 선택</b></dd>
+          <dt>화면 이동</dt><dd>이전 페이지로 이동 → 상품 조회, 예약하기 → 예약·캘린더(<b>선택한 옵션 전달</b>)</dd>
         </dl>
       </div>
     </div>
@@ -249,8 +250,10 @@
     <div class="screen">
       <div class="cap"><span class="id">S1-C2</span><span class="nm">예약 · 캘린더</span><span class="dsc">가용 날짜 선택</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>BOOKING</span></div><div class="vp">
+        <a class="btn sm sec" style="margin-bottom:8px">‹ 이전 페이지로 이동</a>
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">예약 — 날짜 선택</span></div>
-        <div class="row"><span class="chip on">2시간</span><span class="chip">1일</span><span class="chip">2일</span><span class="chip">야간</span></div>
+        <div class="kv" style="border-bottom:none"><span class="k">선택 옵션</span><span class="v">2시간</span></div>
+        <div class="note blue">옵션은 상품 상세에서 선택되어 전달됨(이 화면에서 변경 불가). 옵션을 바꾸려면 상품 상세로 돌아가 재선택.</div>
         <div class="cal">
           <div class="m"><span>‹</span><span>2027 · 7월</span><span>›</span></div>
           <div class="dow"><span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span></div>
@@ -268,18 +271,18 @@
             <span style="width:26px;height:26px;border:1px solid var(--line);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;background:var(--fill)">＋</span>
             <span style="font-family:var(--mono);font-size:9px;color:var(--muted)">/ 가용 3</span>
           </span></div>
-        <div class="note"><b>예약 가능 기간</b>: 오늘 +1일 ~ +3개월(일본 기준 '오늘').<br><b>가용성</b>: 재고×슬롯 겹침으로 판정. 선택 날짜·옵션의 <b>가용 수량 상한</b> 내에서만 수량 선택 가능. 2일+타지역 반납 선택 시 <b>익일·익익일 자동 마감</b>.</div>
+        <div class="note"><b>날짜 선택</b>: 상품 상세에서 선택한 옵션에 따라 선택 가능 일수가 다름 — 2시간·1일 = <b>1일 선택</b>, 2일 = <b>연속 2일 선택</b>, 야간 = <b>야간 가능일 중 1일 선택</b>.<br><b>예약 가능 기간</b>: 오늘 +1일 ~ +3개월(일본 기준 '오늘').<br><b>가용성</b>: 재고×슬롯 겹침으로 판정. 선택 날짜·옵션의 <b>가용 수량 상한</b> 내에서만 수량 선택 가능. 2일+타지역 반납 선택 시 <b>익일·익익일 자동 마감</b>.</div>
         <a class="btn sec" href="javascript:void(0)" data-toast="장바구니에 추가되었습니다.">장바구니 담기</a><a class="btn pri">바로 예약</a>
         <div class="toast"></div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>옵션·날짜·수량을 선택해 예약 항목 확정</dd>
-          <dt>진입</dt><dd>상품 상세의 '예약하기'</dd>
-          <dt>주요 요소</dt><dd>옵션 칩, 가용성 캘린더(가능/선택/마감), 수량 스테퍼, 장바구니 담기·바로 예약</dd>
-          <dt>규칙·로직</dt><dd>예약 가능 기간 <b>오늘 +1일 ~ +3개월</b>(일본 기준), 가용성 = 재고×슬롯 겹침, 가용 수량 상한 내 선택, 2일+타지역 반납 시 <b>익일·익익일 자동 마감</b></dd>
-          <dt>화면 이동</dt><dd>장바구니 담기 → <b>토스트('장바구니에 추가되었습니다.')</b> 노출 후 현재 화면 유지, 바로 예약 → <b>여권 영문명 입력·확인 화면(S1-C3)</b></dd>
+          <dt>목적</dt><dd>전달받은 옵션에 맞춰 날짜·수량을 선택해 예약 항목 확정</dd>
+          <dt>진입</dt><dd>상품 상세의 '예약하기'(<b>선택한 옵션 포함</b>)</dd>
+          <dt>주요 요소</dt><dd><b>이전 페이지로 이동</b> 버튼, 선택된 옵션 표시(<b>읽기전용</b>), 가용성 캘린더(가능/선택/마감), 수량 스테퍼, 장바구니 담기·바로 예약</dd>
+          <dt>규칙·로직</dt><dd>옵션별 날짜 선택 개수 — 2시간·1일 → <b>1일 선택</b>, 2일 → <b>연속 2일 선택</b>, 야간 → <b>야간 가능일 중 1일 선택</b>. 예약 가능 기간 <b>오늘 +1일 ~ +3개월</b>(일본 기준), 가용성 = 재고×슬롯 겹침, 가용 수량 상한 내 선택, 2일+타지역 반납 시 <b>익일·익익일 자동 마감</b></dd>
+          <dt>화면 이동</dt><dd>이전 페이지로 이동 → 상품 상세, 장바구니 담기 → <b>토스트('장바구니에 추가되었습니다.')</b> 노출 후 현재 화면 유지, 바로 예약 → <b>여권 영문명 입력·확인 화면(S1-C3)</b></dd>
         </dl>
       </div>
     </div>
@@ -287,6 +290,7 @@
     <div class="screen" id="cart">
       <div class="cap"><span class="id">S1-C3</span><span class="nm">장바구니</span><span class="dsc">복수 상품 동시 예약</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>CART</span></div><div class="vp">
+        <a class="btn sm sec" style="margin-bottom:8px">‹ 이전 페이지로 이동</a>
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">예약 확인</span></div>
         <div class="card2"><div class="row"><div style="flex:1"><div class="h s"></div><div class="line w7"></div></div><span class="tag">×2 · ₩</span></div></div>
         <div class="card2"><div class="row"><div style="flex:1"><div class="h s"></div><div class="line w7"></div></div><span class="tag">×1 · ₩</span></div></div>
@@ -302,9 +306,9 @@
         <dl>
           <dt>목적</dt><dd>복수 상품을 <b>동시 예약</b>하고 여권명·합계 확인 후 확정</dd>
           <dt>진입</dt><dd>예약 캘린더의 '장바구니 담기', 하단 탭 예약</dd>
-          <dt>주요 요소</dt><dd>담긴 항목(수량 표시), 임시 홀드 타이머, 여권 영문명, 합계, 확정 CTA</dd>
+          <dt>주요 요소</dt><dd><b>이전 페이지로 이동</b> 버튼, 담긴 항목(수량 표시), 임시 홀드 타이머, 여권 영문명, 합계, 확정 CTA</dd>
           <dt>규칙·로직</dt><dd><b>임시 홀드</b>로 중복 예약 방지, 저장된 여권 영문명 없으면 <b>필수 입력</b>(확정 선행조건), 수량 변경은 예약 화면에서</dd>
-          <dt>화면 이동</dt><dd>예약하고 입금 안내 받기 → 입금 안내</dd>
+          <dt>화면 이동</dt><dd>이전 페이지로 이동 → 예약·캘린더, 예약하고 입금 안내 받기 → 입금 안내</dd>
         </dl>
       </div>
     </div>
@@ -312,6 +316,7 @@
     <div class="screen" id="deposit">
       <div class="cap"><span class="id">S1-C4</span><span class="nm">입금 안내 · 확인 요청</span><span class="dsc">무통장 + 수동확인</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>DEPOSIT</span></div><div class="vp">
+        <a class="btn sm sec" style="margin-bottom:8px">‹ 이전 페이지로 이동</a>
         <div class="appbar"><span class="ic"></span><span class="logo" style="font-size:12px">입금 안내</span></div>
         <div class="card2">
           <div class="kv"><span class="k">예약번호</span><span class="v">FR-27070001</span></div>
@@ -327,9 +332,9 @@
         <dl>
           <dt>목적</dt><dd>무통장 입금 안내 후 <b>수동 확인 요청</b> 접수</dd>
           <dt>진입</dt><dd>예약 확인의 '예약하고 입금 안내 받기'</dd>
-          <dt>주요 요소</dt><dd>예약번호, 입금 계좌·예금주·입금액, 입금 확인 요청 CTA</dd>
+          <dt>주요 요소</dt><dd><b>이전 페이지로 이동</b> 버튼, 예약번호, 입금 계좌·예금주·입금액, 입금 확인 요청 CTA</dd>
           <dt>규칙·로직</dt><dd><b>PG 미사용</b>, 안내 계좌(관리자 설정 1개), 확인 요청 시 상태 <b>접수</b>, <b>24시간 내 미입금</b> 시 관리자 강제취소 가능</dd>
-          <dt>화면 이동</dt><dd>입금 확인 요청 → 예약 목록(상태: 접수)</dd>
+          <dt>화면 이동</dt><dd>이전 페이지로 이동 → 장바구니, 입금 확인 요청 → 예약 목록(상태: 접수)</dd>
         </dl>
       </div>
     </div>
