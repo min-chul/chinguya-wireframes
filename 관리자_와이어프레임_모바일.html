@@ -486,17 +486,20 @@
       <div class="cap"><span class="id">S2-A5/A6</span><span class="nm">인보이스 관리</span><span class="dsc">월 발행</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>INVOICES</span></div><div class="vp">
         <div class="abar"><span class="mn">≡</span><span class="ti">인보이스</span></div>
-        <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 6월<div class="line w3"></div></div><span class="tag g">발행됨</span></div></div>
-        <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 7월<div class="line w3"></div></div><span class="tag y">발행예정</span></div></div>
-        <div class="note">통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준</b> 발행. 라인아이템=예약 건. 정산은 <b>수동 확인</b>.</div>
+        <div class="lbl">이번 달 사용 금액</div>
+        <div class="card2"><div class="row"><div style="flex:1">한라산투어 · 8월(진행 중)<div class="line w3"></div></div><span class="tag y">발행예정</span></div></div>
+        <div class="lbl">발행된 인보이스</div>
+        <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 6월<div class="line w3"></div></div><span class="tag g">정산완료</span></div></div>
+        <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 7월<div class="line w3"></div></div><span class="tag y">미정산</span></div></div>
+        <div class="note">통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동</b> 발행(여행사 예약 사용액 합산, 관리자 수동 입력 없음). <b>발행예정</b>은 마감 전 진행 중 사용액. 정산(입금)만 <b>수동 확인</b>.</div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>여행사 <b>월별 인보이스</b> 발행·관리</dd>
+          <dt>목적</dt><dd>여행사 <b>월별 인보이스</b> 자동 발행·정산 확인</dd>
           <dt>진입</dt><dd>메뉴 → 인보이스</dd>
-          <dt>주요 요소</dt><dd>여행사·월별 인보이스 카드(발행 상태 태그)</dd>
-          <dt>규칙·로직</dt><dd>통화 <b>KRW</b>(세금 라인 없음), <b>매월 1일 전월 기준</b> 발행, 라인아이템 = 예약 건, 정산은 <b>수동 확인</b></dd>
+          <dt>주요 요소</dt><dd>이번 달 진행 중 사용액(발행예정) · 발행된 인보이스 목록(정산완료/미정산 태그)</dd>
+          <dt>규칙·로직</dt><dd>통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동 발행</b> — 관리자가 여행사·금액을 직접 입력하지 않고, 그 달 여행사 예약 사용액을 합산해 마감된 달만 발행한다. 이번 달(마감 전)은 <b>발행예정</b>으로 진행 중 사용액만 실시간 표시. 정산(입금 확인)은 발행된 인보이스에서 <b>수동 확인</b></dd>
           <dt>화면 이동</dt><dd>카드 → 인보이스 상세</dd>
         </dl>
       </div>
