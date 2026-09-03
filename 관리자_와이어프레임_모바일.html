@@ -52,6 +52,8 @@
   .imgph.wide{height:60px}
   .field{border:1px solid var(--line);border-radius:7px;padding:9px 10px;font-size:11px;color:var(--muted);background:#fcfcfd;margin:7px 0}
   .lbl{font-size:10px;color:var(--muted);font-family:var(--mono);margin:8px 0 2px}
+  .lbl.em{font-size:12px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:5px}
+  .lbl.em::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent)}
   .btn{display:block;text-align:center;border:1px solid var(--line);border-radius:7px;padding:10px;font-size:12px;background:var(--card);margin:7px 0;cursor:default}
   .btn.pri{background:var(--accent);color:#fff;border-color:var(--accent)}
   .btn.sec{background:var(--fill)}
@@ -69,7 +71,7 @@
   .toggle.on{background:var(--accent);border-color:var(--accent)}.toggle.on::after{left:16px}
   .stepper{display:inline-flex;align-items:center;gap:8px}
   .stepper b{width:24px;height:24px;border:1px solid var(--line);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;background:var(--fill);font-weight:400}
-  .stat{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stat{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .stat .s{border:1px solid var(--line);border-radius:8px;padding:8px;text-align:center}
   .stat .s .n{font-size:18px;font-weight:700}.stat .s .l{font-size:9px;color:var(--muted)}
   .cal{border:1px solid var(--line);border-radius:8px;padding:9px;margin:8px 0}
@@ -112,8 +114,8 @@
     <a href="#a-login">로그인</a><a href="#a-dash">대시보드</a><a href="#a-asset">자산</a><a href="#a-inv">재고 세팅</a>
     <a href="#a-prod">상품 목록</a><a href="#a-prodedit">상품 등록</a><a href="#a-res">예약 목록</a><a href="#a-resdetail">예약 상세·입금</a>
     <a href="#a-cancel">취소 처리</a><a href="#a-set">계좌·정책</a><a href="#a-admins">관리자 관리</a>
-    <a href="#a-agency">여행사 관리</a><a href="#a-agencyadd">여행사 등록</a><a href="#a-alloc">할당 세팅</a><a href="#a-invoice">인보이스</a>
-    <a href="#a-qna">문의 관리</a><a href="#a-cms">FAQ·콘텐츠</a>
+    <a href="#a-agency">여행사 관리</a><a href="#a-agencyadd">여행사 등록</a><a href="#a-alloc">할당 세팅</a><a href="#a-invoice">인보이스</a><a href="#a-invoicedetail">인보이스 상세·입금확인</a>
+    <a href="#a-qna">문의 관리</a><a href="#a-qnadetail">문의 상세·답변</a><a href="#a-cms">FAQ·콘텐츠</a>
   </nav>
 </header>
 
@@ -150,6 +152,7 @@
           <div class="s"><div class="n">5</div><div class="l">신규 예약</div></div>
           <div class="s"><div class="n">3</div><div class="l">입금확인 요청</div></div>
           <div class="s"><div class="n">1</div><div class="l">취소요청</div></div>
+          <div class="s"><div class="n">4</div><div class="l">미답변 문의</div></div>
         </div>
         <div class="h s" style="margin:14px 0 8px"></div>
         <div class="card2"><div class="row"><div style="flex:1"><div class="line w5" style="margin:0"></div><div class="line w7"></div></div><span class="tag g">완료</span></div></div>
@@ -162,9 +165,9 @@
         <dl>
           <dt>목적</dt><dd>운영 현황과 <b>오늘 방문 예약</b>을 한눈에 파악</dd>
           <dt>진입</dt><dd>로그인 직후, 하단 탭 '홈'</dd>
-          <dt>주요 요소</dt><dd>지표 카드(신규 예약/입금확인 요청/취소요청), 오늘 방문 예약 목록, 하단 탭</dd>
-          <dt>규칙·로직</dt><dd>'오늘 방문 예약' = 오늘 날짜 이용 건(일본 기준 '오늘')</dd>
-          <dt>화면 이동</dt><dd>예약 카드 → 예약 상세, 지표 → 해당 목록</dd>
+          <dt>주요 요소</dt><dd>지표 카드(신규 예약/입금확인 요청/취소요청/<b>미답변 문의</b>), 오늘 방문 예약 목록, 하단 탭</dd>
+          <dt>규칙·로직</dt><dd>'오늘 방문 예약' = 오늘 날짜 이용 건(일본 기준 '오늘'). <b>미답변 문의</b> 지표는 문의 관리(S4-A2)로 들어가는 진입점을 겸한다(실 구현과 동기화)</dd>
+          <dt>화면 이동</dt><dd>예약 카드 → 예약 상세, 지표 → 해당 목록(미답변 문의 → 문의 관리)</dd>
         </dl>
       </div>
     </div>
@@ -483,45 +486,97 @@
     </div>
 
     <div class="screen" id="a-invoice">
-      <div class="cap"><span class="id">S2-A5/A6</span><span class="nm">인보이스 관리</span><span class="dsc">월 발행</span></div>
+      <div class="cap"><span class="id">S2-A5</span><span class="nm">인보이스 관리</span><span class="dsc">목록 · 월 발행</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>INVOICES</span></div><div class="vp">
         <div class="abar"><span class="mn">≡</span><span class="ti">인보이스</span></div>
         <div class="lbl">이번 달 사용 금액</div>
         <div class="card2"><div class="row"><div style="flex:1">한라산투어 · 8월(진행 중)<div class="line w3"></div></div><span class="tag y">발행예정</span></div></div>
         <div class="lbl">발행된 인보이스</div>
+        <div><span class="chip">전체</span><span class="chip">제주바다여행사</span><span class="chip">한라산투어</span></div>
         <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 6월<div class="line w3"></div></div><span class="tag g">정산완료</span></div></div>
         <div class="card2"><div class="row"><div style="flex:1">ABC 투어 · 7월<div class="line w3"></div></div><span class="tag y">미정산</span></div></div>
-        <div class="note">통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동</b> 발행(여행사 예약 사용액 합산, 관리자 수동 입력 없음). <b>발행예정</b>은 마감 전 진행 중 사용액. 정산(입금)만 <b>수동 확인</b>.</div>
+        <div class="note">여행사 필터로 좁혀볼 수 있음. 통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동</b> 발행(여행사 예약 사용액 합산) — 관리자가 직접 발행하는 수동 '등록' 버튼 없음. <b>발행예정</b>은 마감 전 진행 중 사용액. 카드 탭 → 인보이스 상세(정산 확인은 상세에서만).</div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>여행사 <b>월별 인보이스</b> 자동 발행·정산 확인</dd>
+          <dt>목적</dt><dd>여행사 <b>월별 인보이스</b> 자동 발행 현황을 여행사별로 조회</dd>
           <dt>진입</dt><dd>메뉴 → 인보이스</dd>
-          <dt>주요 요소</dt><dd>이번 달 진행 중 사용액(발행예정) · 발행된 인보이스 목록(정산완료/미정산 태그)</dd>
-          <dt>규칙·로직</dt><dd>통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동 발행</b> — 관리자가 여행사·금액을 직접 입력하지 않고, 그 달 여행사 예약 사용액을 합산해 마감된 달만 발행한다. 이번 달(마감 전)은 <b>발행예정</b>으로 진행 중 사용액만 실시간 표시. 정산(입금 확인)은 발행된 인보이스에서 <b>수동 확인</b></dd>
-          <dt>화면 이동</dt><dd>카드 → 인보이스 상세</dd>
+          <dt>주요 요소</dt><dd>이번 달 진행 중 사용액(발행예정), 여행사 필터 칩(전체 포함), 발행된 인보이스 목록(정산완료/미정산 태그)</dd>
+          <dt>규칙·로직</dt><dd>통화 <b>KRW</b>(세금 라인 없음). <b>매월 1일 전월 기준 자동 발행</b> — 관리자가 여행사·금액을 직접 입력하지 않고, 그 달 여행사 예약 사용액을 합산해 마감된 달만 발행한다(수동 '등록' 버튼 없음). 이번 달(마감 전)은 <b>발행예정</b>으로 진행 중 사용액만 실시간 표시. 정산(입금 확인)은 이 화면에서 하지 않고 인보이스 상세에서만 한다</dd>
+          <dt>화면 이동</dt><dd>카드 → 인보이스 상세(`a-invoicedetail`)</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="screen" id="a-invoicedetail">
+      <div class="cap"><span class="id">S2-A6</span><span class="nm">인보이스 상세</span><span class="dsc">라인아이템 · 입금 확인</span></div>
+      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>INVOICES</span></div><div class="vp">
+        <div class="abar"><span class="mn">←</span><span class="ti">인보이스 상세</span></div>
+        <div class="row" style="align-items:center;margin-bottom:6px"><div class="line w5" style="flex:1;margin:0"></div><span class="tag y">미정산</span></div>
+        <div class="kv"><span class="k">여행사</span><span class="v">한라산투어</span></div>
+        <div class="kv"><span class="k">기간</span><span class="v">2026-07</span></div>
+        <div class="lbl" style="margin-top:8px">예약 라인아이템</div>
+        <div class="card2"><div class="row" style="align-items:center"><div style="flex:1"><div class="line w5" style="margin:0 0 4px"></div><div class="line w3"></div></div><span class="tag">₩ 32,000</span></div></div>
+        <div class="card2"><div class="row" style="align-items:center"><div style="flex:1"><div class="line w5" style="margin:0 0 4px"></div><div class="line w3"></div></div><span class="tag k">취소 · ₩ 0</span></div></div>
+        <div class="kv" style="font-weight:700"><span class="k">합계(완료 예약 금액 합)</span><span class="v">₩ 32,000</span></div>
+        <a class="btn pri">입금 확인</a>
+        <div class="note">라인은 예약번호 · 상품 · 옵션 × 수량 · 금액. 취소 건도 라인엔 표시하되 금액은 <b>0</b>으로 반영(여행사 예약은 취소 수수료 개념이 없음 — 입금 흐름이 없어 예약=즉시 완료/취소=즉시로 단순한 모델). <b>합계는 완료 예약 금액 합만</b>. '입금 확인' 버튼은 <b>입금 미완료(미정산)일 때만</b> 노출, 탭하면 '정말 입금을 확인했습니까?' / '입금을 확인하셨다면 확인 버튼을 눌러주세요.' 컨펌(<b>확인</b> 버튼, 초록) 후 인보이스 단위로 정산완료 처리(발행된 인보이스에 한함).</div>
+      </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>인보이스 하나의 <b>예약 라인아이템</b>을 확인하고 <b>입금(정산) 확인</b> 처리</dd>
+          <dt>진입</dt><dd>인보이스 목록의 인보이스 카드</dd>
+          <dt>주요 요소</dt><dd>여행사·기간·정산 상태 태그, 예약 라인아이템(예약번호·상품·옵션·수량·금액, 취소 건 표시), 합계, 입금 확인 CTA(조건부)</dd>
+          <dt>규칙·로직</dt><dd>라인아이템은 해당 여행사·기간의 <b>완료·취소 예약을 모두</b> 보여준다(취소 건도 무엇이 취소됐는지 확인 가능하도록). 금액은 <b>완료 건만</b> 반영하고 취소 건은 0 — 여행사 예약(고객 예약과 달리 입금 흐름이 없어 예약=즉시 완료/취소=즉시로 단순화된 모델)엔 취소 수수료 개념이 없기 때문. 합계 = <b>완료 예약 금액 합</b>. '입금 확인' 버튼은 <b>미정산 상태일 때만</b> 노출되고, 탭 시 <b>'정말 입금을 확인했습니까?'</b>(본문: '입금을 확인하셨다면 확인 버튼을 눌러주세요.', <b>확인</b> 버튼 초록) 컨펌 후 해당 인보이스만 정산완료로 바뀐다(인보이스 단위)</dd>
+          <dt>화면 이동</dt><dd>← → 인보이스 목록, 입금 확인 → 컨펌 후 같은 화면(상태 갱신)</dd>
         </dl>
       </div>
     </div>
 
     <div class="screen" id="a-qna">
-      <div class="cap"><span class="id">S4-A2</span><span class="nm">문의 관리</span><span class="dsc">답변</span></div>
+      <div class="cap"><span class="id">S4-A2</span><span class="nm">문의 관리</span><span class="dsc">목록</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>Q&A ADMIN</span></div><div class="vp">
-        <div class="abar"><span class="mn">←</span><span class="ti">문의 상세</span></div>
-        <div class="card2"><div class="line w7" style="margin:0 0 6px"></div><div class="line w9"></div><div class="line w5"></div></div>
-        <div class="lbl">답변</div><div class="field" style="height:48px">답변 입력…</div>
-        <a class="btn pri">답변 등록</a>
-        <div class="note">답변 등록 시 고객에게 <b>카카오 알림톡</b> 발송(알림 인터페이스, 실발송 이연).</div>
+        <div class="abar"><span class="mn">≡</span><span class="ti">문의 관리</span></div>
+        <div class="lbl">총 12건 · 답변완료 8 · 대기 4</div>
+        <div class="card2"><div class="row" style="align-items:center"><div style="flex:1"><div class="line w7" style="margin:0 0 4px"></div><div class="line w5"></div></div><span class="tag y">대기</span></div></div>
+        <div class="card2"><div class="row" style="align-items:center"><div style="flex:1"><div class="line w7" style="margin:0 0 4px"></div><div class="line w5"></div></div><span class="tag g">답변완료</span></div></div>
+        <div class="note">행 전체를 탭하면 <b>문의 상세</b>가 열린다(아래).</div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd>고객 1:1 문의 확인 및 <b>답변 등록</b></dd>
-          <dt>진입</dt><dd>메뉴 → 문의 관리, 대시보드/알림</dd>
-          <dt>주요 요소</dt><dd>문의 본문, 답변 입력, 답변 등록 CTA</dd>
-          <dt>규칙·로직</dt><dd>답변 등록 시 고객에게 <b>카카오 알림톡</b> 발송(알림 인터페이스, 실발송 이연)</dd>
-          <dt>화면 이동</dt><dd>답변 등록 → 문의 목록(답변완료)</dd>
+          <dt>목적</dt><dd>고객 1:1 문의 <b>목록 조회</b>(답변완료/대기 구분)</dd>
+          <dt>진입</dt><dd>메뉴 → 문의 관리, 대시보드 지표</dd>
+          <dt>주요 요소</dt><dd>총건수·답변완료·대기 카운트, 문의 카드(제목·본문 일부·상태 태그)</dd>
+          <dt>규칙·로직</dt><dd><b>답변 유무</b>로 답변완료/대기를 판정한다(별도 상태값이 아니다), 분류·검색 없음</dd>
+          <dt>화면 이동</dt><dd>문의 카드 → 문의 상세·답변</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="screen" id="a-qnadetail">
+      <div class="cap"><span class="id">S4-A2</span><span class="nm">문의 상세 · 답변</span><span class="dsc">답변 등록</span></div>
+      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>Q&A ADMIN</span></div><div class="vp">
+        <div class="abar"><span class="mn">←</span><span class="ti">문의 상세</span></div>
+        <div class="card2">
+          <div class="row" style="align-items:start"><div style="flex:1" class="line w7"></div><span class="tag k">🔒 비공개</span></div>
+          <div class="line w9" style="margin-top:6px"></div><div class="line w5"></div>
+        </div>
+        <div class="card2">↳ <span class="line w5" style="display:inline-block;vertical-align:-3px"></span></div>
+        <div class="lbl">답변</div><div class="field" style="height:48px">답변 입력…</div>
+        <a class="btn pri">답변 등록</a>
+        <div class="note">답변 등록 시 고객에게 <b>카카오 알림톡</b> 발송(알림 인터페이스, 실발송 이연). 이미 답변한 문의를 다시 열면 버튼이 <b>답변 수정</b>으로 바뀐다.</div>
+      </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>문의 본문 확인 및 <b>답변 등록·수정</b></dd>
+          <dt>진입</dt><dd>문의 관리 목록의 문의 카드</dd>
+          <dt>주요 요소</dt><dd>문의 제목·본문, 공개/비공개 태그, 추가 문의(있는 경우에만), 답변 입력, 답변 등록/수정 CTA</dd>
+          <dt>규칙·로직</dt><dd>비공개 문의도 관리자 화면에는 <b>항상 본문 노출</b>(고객앱의 PIN 잠금은 관리자에겐 적용 안 함). 답변 등록 시 고객에게 <b>카카오 알림톡</b> 발송(실발송 이연). 이미 답변된 문의를 다시 열면 버튼이 <b>답변 수정</b>으로 바뀐다</dd>
+          <dt>화면 이동</dt><dd>답변 등록/수정 → 문의 관리 목록(상태 갱신)</dd>
         </dl>
       </div>
     </div>
@@ -530,20 +585,55 @@
       <div class="cap"><span class="id">S4-A1/A3</span><span class="nm">FAQ · 콘텐츠 관리</span><span class="dsc">CMS-lite</span></div>
       <div class="phone"><div class="bar"><i></i><i></i><i></i><span>CMS</span></div><div class="vp">
         <div class="abar"><span class="mn">≡</span><span class="ti">FAQ · 콘텐츠</span><span class="sp"></span><span class="btn sm sec">+ FAQ</span></div>
-        <div class="card2"><div class="row" style="align-items:center"><span style="color:var(--muted)">⋮⋮</span><div style="flex:1" class="line w7"></div><span class="tag">순서</span></div></div>
-        <div class="card2"><div class="row" style="align-items:center"><span style="color:var(--muted)">⋮⋮</span><div style="flex:1" class="line w5"></div><span class="tag">순서</span></div></div>
-        <div class="h s" style="margin:12px 0 6px"></div>
-        <div class="card2">랜딩 · 서비스 소개 콘텐츠 편집 <div class="imgph wide" style="margin-top:8px"></div></div>
-        <div class="note blue">FAQ 등록/수정/삭제·노출 순서. 분류·검색 없음. 랜딩/소개 텍스트·이미지 편집.</div>
+        <div class="card2"><div class="row" style="align-items:center"><span class="tag k">1</span><div style="flex:1" class="line w7"></div></div></div>
+        <div class="card2"><div class="row" style="align-items:center"><span class="tag k">2</span><div style="flex:1" class="line w5"></div></div></div>
+        <div class="note">행 전체를 탭하면 <b>FAQ 수정</b> 화면이 열린다(아래). 목록에 화살표를 두지 않는다 — 탭할 때마다 줄이 밀려서 다음 클릭이 원래 노리던 항목이 아닌 <b>다른 항목</b>을 건드리는 문제가 있었다.</div>
+
+        <div class="lbl" style="margin-top:14px">FAQ 수정 — 목록 항목을 탭하면 열림</div>
+        <div class="card2">
+          <div class="field">질문 입력…</div>
+          <div class="field" style="height:40px">답변 입력…</div>
+          <div class="kv"><span class="k">노출 순서</span><span class="v">현재 2번째 · 총 5개</span></div>
+          <div class="row" style="margin-top:6px"><span class="btn sm sec">▲ 위로</span><span class="btn sm sec">▼ 아래로</span></div>
+        </div>
+
+        <div class="lbl" style="margin-top:14px">랜딩 히어로 배너 (3개, 탭으로 전환)</div>
+        <div class="tabs"><span class="on">배너 1</span><span>배너 2</span><span>배너 3</span></div>
+        <div class="card2">
+          <div class="lbl em">제목</div><div class="line w7"></div>
+          <div class="lbl em">부제(선택 입력)</div><div class="line w5"></div>
+          <div class="row" style="margin-top:8px;align-items:start">
+            <div>
+              <div class="lbl em">PC 이미지</div>
+              <div class="imgph wide" style="height:40px"></div>
+              <span class="btn sm sec" style="margin-top:4px">파일 선택</span>
+            </div>
+            <div>
+              <div class="lbl em">모바일 이미지</div>
+              <div class="imgph wide" style="height:40px"></div>
+              <span class="btn sm sec" style="margin-top:4px">파일 선택</span>
+            </div>
+          </div>
+        </div>
+        <div class="note">배너 3장을 한 화면에 다 펼치면 스크롤이 너무 길어져서 <b>탭으로 하나씩만</b> 보여준다(탭 선택 시 그 배너의 제목·부제·이미지만 아래 카드에 표시). 배너마다 <b>PC용·모바일용 이미지가 따로</b> 필요하다(반응형으로 한 장을 늘려 쓰는 게 아니라, 화면 폭에 맞는 이미지를 통째로 다르게 보여주는 방식 — 고객앱 홈 캐러셀과 동일). 이미지는 첨부해서 <b>미리보기</b>까지 가능하지만, 실제 업로드·저장 연동은 아직 없다(새로고침하면 사라짐, 이연).</div>
+        <a class="btn pri">배너 저장</a>
+
+        <div class="lbl" style="margin-top:14px">서비스 소개(S4-C2) 본문</div>
+        <div class="card2">
+          <div class="lbl em">본문</div>
+          <div class="line w9"></div><div class="line w9"></div><div class="line w7"></div>
+        </div>
+        <a class="btn pri">본문 저장</a>
+        <div class="note">배너·서비스 소개는 실제로는 서로 다른 콘텐츠(화면·API가 다름)라, 저장 버튼도 <b>한 개로 묶지 않고 구역별로 분리</b>했다 — 버튼 하나로 전체를 저장하면 "이 버튼이 정확히 뭘 저장하는지" 헷갈릴 수 있어서다. 탭을 넘나들며 배너 여러 개를 고쳐도 <b>배너 저장</b> 한 번으로 3개 다 반영된다.</div>
       </div></div>
       <div class="desc">
         <h4>화면 상세 정의</h4>
         <dl>
-          <dt>목적</dt><dd><b>FAQ·랜딩·서비스 소개</b> 콘텐츠 편집(CMS-lite)</dd>
+          <dt>목적</dt><dd><b>FAQ·랜딩 히어로 배너·서비스 소개</b> 콘텐츠 편집(CMS-lite)</dd>
           <dt>진입</dt><dd>메뉴 → FAQ·콘텐츠</dd>
-          <dt>주요 요소</dt><dd>FAQ 항목(순서 드래그), + FAQ 버튼, 랜딩·소개 콘텐츠 편집 영역</dd>
-          <dt>규칙·로직</dt><dd>FAQ 등록/수정/삭제·<b>노출 순서</b> 관리, <b>분류·검색 없음</b>, 랜딩/소개 텍스트·이미지 편집</dd>
-          <dt>화면 이동</dt><dd>편집 → 고객 FAQ·랜딩·서비스 소개에 반영</dd>
+          <dt>주요 요소</dt><dd>FAQ 목록(순번 표시, 항목 탭하여 수정), + FAQ 버튼, <b>FAQ 수정 화면 내 순서 이동(▲ 위로 / ▼ 아래로)</b>, <b>랜딩 히어로 배너 3장(탭으로 전환)</b> — 탭당 제목·부제·<b>PC/모바일 이미지 각각 첨부</b>, 서비스 소개 본문 편집 영역</dd>
+          <dt>규칙·로직</dt><dd>FAQ 등록/수정/삭제·<b>노출 순서</b> 관리, <b>분류·검색 없음</b>. 순서 변경은 목록의 화살표가 아니라 <b>FAQ 수정 화면 안</b>에서만 한다 — 목록에서 바로 화살표를 누르면 그 줄이 한 칸 밀리면서 다음 클릭이 밀려온 다른 항목의 화살표를 누르게 되는 문제가 있어, 위치가 고정된 수정 화면으로 옮겼다(실 구현과 동기화). 배너는 <b>3장 고정</b>이며 장마다 <b>PC/모바일 이미지 2장</b>이 필요하다(반응형 1장이 아님) — 3장을 한 화면에 다 펼치면 스크롤이 너무 길어져 <b>탭으로 하나씩만</b> 편집한다(실 구현과 동기화). 이미지는 <b>선택 시 미리보기</b>까지만 되고 실제 업로드·저장 연동은 이연 상태</dd>
+          <dt>화면 이동</dt><dd>FAQ 항목 → FAQ 수정, 수정 완료/취소 → FAQ · 콘텐츠 목록, 편집 → 고객 FAQ·랜딩(홈 배너)·서비스 소개에 반영</dd>
         </dl>
       </div>
     </div>
