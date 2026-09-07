@@ -565,6 +565,35 @@
         <div class="note blue"><b>[개발자 확인]</b> 실 구현(apps/customer/src/app/profile/page.tsx)은 로그인 세션이 아직 없어서 "내정보 요약 + 내 예약·내 장바구니 미리보기" 대시보드 형태를 유지하지만, 그 안에 여권 영문명 변경·저장 / 로그아웃 / 회원 탈퇴 UI를 전부 미리 만들어뒀다(memberData.ts 목업 저장소로 동작). 로그인이 붙으면 memberData.ts의 getMember()/updatePassportName()을 실제 계정 API로, 로그아웃·탈퇴 버튼의 임시 처리를 진짜 세션 종료/탈퇴 API 호출로 바꾸기만 하면 된다.</div>
       </div>
     </div>
+
+    <div class="screen" id="footer">
+      <div class="cap"><span class="id">공통</span><span class="nm">Footer</span><span class="dsc">전 화면 공통 하단 정보</span></div>
+      <div class="phone"><div class="bar"><i></i><i></i><i></i><span>FOOTER</span></div><div class="vp">
+        <div style="background:#1c1c1a;color:#fff;padding:14px;border-radius:6px">
+          <div style="font-size:11px;font-weight:700;margin-bottom:8px">친구야 카페</div>
+          <div style="font-size:9.5px;line-height:1.7">
+            <div>주소: 부산광역시 동구 중앙대로 169, 318호 넷투재팬</div>
+            <div>영업시간: (10:00 ~ 15:00)</div>
+            <div style="margin-top:4px">대여서비스 문의:</div>
+            <div style="padding-left:8px">· 예약문의(한국) : 010-9129-3051</div>
+            <div style="padding-left:8px">· 일본 사고 시 긴급 연락 : 090-1970-7077</div>
+            <div style="margin-top:4px">사업자등록번호: 105-87-19839 · 대표: 김인태</div>
+          </div>
+          <div style="font-size:8.5px;color:#9a9a9a;margin-top:8px">© 2026 copyright NETJAPAN.co.ltd all right reserved.</div>
+        </div>
+      </div></div>
+      <div class="desc">
+        <h4>화면 상세 정의</h4>
+        <dl>
+          <dt>목적</dt><dd>브랜드 정보·연락처 고지(주소, 영업시간, 대여서비스 문의, 사업자등록번호)</dd>
+          <dt>진입</dt><dd><b>전 화면 공통</b> — 모든 페이지 하단(콘텐츠 끝 ~ 하단 탭 사이)에 항상 노출</dd>
+          <dt>주요 요소</dt><dd>로고, 주소, 영업시간, <b>대여서비스 문의</b>(한국 예약문의 · 일본 긴급연락 2줄), 사업자등록번호·대표자명, 저작권 문구</dd>
+          <dt>규칙·로직</dt><dd>TopNav·하단 탭 내비게이션(BottomNav)처럼 전 화면 공통 요소라 화면별로 따로 그리지 않고 이 화면 하나로 대표한다. <b>대여서비스 문의</b>는 연락처가 두 개(한국 예약문의 / 일본 긴급연락)라 한 줄에 붙여 쓰면 모바일에서 읽기 어려워, 항목마다 줄을 나누고 앞에 작은 점을 붙여 '대여서비스 문의' 아래 하위 목록임을 표시했다.</dd>
+          <dt>화면 이동</dt><dd>없음(고정 정보 표시, 링크 없음)</dd>
+        </dl>
+        <div class="note blue">TopNav처럼 화면마다 안 바뀌는 공통 요소라 지금까지 이 문서 범위 밖이었는데, 연락처 리스트 구조가 바뀌면서(모바일에서 안 예쁘게 보이던 걸 항목별 줄바꿈 + 점 표시로 수정) 실 구현과 맞춰볼 필요가 있어 새로 추가했다. 실 구현: apps/customer/src/components/Footer.tsx(전 페이지 공통 레이아웃 layout.tsx에서 렌더링, 실 구현과 동기화).</div>
+      </div>
+    </div>
   </div>
 
   <div class="legendbar">
