@@ -611,6 +611,10 @@
         </div>
 
         <div class="lbl" style="margin-top:14px">랜딩 히어로 배너 (3개, 탭으로 전환)</div>
+        <div class="note blue" style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
+          <span>[권장 사이즈]<br>PC: 1920×1080px(16:9)<br>모바일: 1080×1920px(9:16)</span>
+          <span style="font-weight:700">+</span>
+        </div>
         <div class="tabs"><span class="on">배너 1</span><span>배너 2</span><span>배너 3</span></div>
         <div class="card2">
           <div class="lbl em">제목</div><div class="line w7"></div>
@@ -629,6 +633,7 @@
           </div>
         </div>
         <div class="note">배너 3장을 한 화면에 다 펼치면 스크롤이 너무 길어져서 <b>탭으로 하나씩만</b> 보여준다(탭 선택 시 그 배너의 제목·부제·이미지만 아래 카드에 표시). 배너마다 <b>PC용·모바일용 이미지가 따로</b> 필요하다(반응형으로 한 장을 늘려 쓰는 게 아니라, 화면 폭에 맞는 이미지를 통째로 다르게 보여주는 방식 — 고객앱 홈 캐러셀과 동일). 이미지는 첨부해서 <b>미리보기</b>까지 가능하지만, 실제 업로드·저장 연동은 아직 없다(새로고침하면 사라짐, 이연).</div>
+        <div class="note">권장 이미지 사이즈 안내는 기본 접힘 — 사이즈 숫자(<b>PC: 1920×1080px(16:9)</b> · <b>모바일: 1080×1920px(9:16)</b>)까지만 보이고, 우측 상단 <b>+</b> 버튼을 누르면 왜 이 비율이어야 하는지(화면을 꽉 채우도록 잘라서 보여주는 방식이라 이 비율과 다르면 중요한 부분이 잘릴 수 있다 — <b>PC는 가운데</b>, <b>모바일은 위쪽</b> 기준으로 잘림) 설명이 펼쳐지고 버튼이 <b>−</b>로 바뀐다. 다시 누르면 접힌다. +/− 버튼에는 <b>더보기/접기</b> 툴팁(마우스 올리면 표시, 키보드로 포커스해도 표시)이 붙어 있다 — 브라우저 기본 툴팁이 아니라 디자인 시스템 전용 <b>Tooltip 컴포넌트</b>(packages/ui/src/components/tooltip.tsx)로, 라이트·다크 테마 어디서든 항상 어두운 말풍선으로 보인다. 실 구현(apps/admin/src/app/content/page.tsx의 BannerSizeGuide) 화면에 그대로 노출됨(실 구현과 동기화).</div>
         <a class="btn pri">배너 저장</a>
 
         <div class="lbl" style="margin-top:14px">서비스 소개(S4-C2) 본문</div>
